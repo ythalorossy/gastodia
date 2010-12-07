@@ -9,33 +9,4 @@
     android:layout_height="wrap_content" 
     android:text="@string/hello"/>
     
-<TextView  
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="@string/form_label_descricao"/>
-    
-<EditText 
-	android:id="@+id/EditTextDescricao"
-	android:text="" 
-	android:layout_width="fill_parent" 
-	android:layout_height="wrap_content"/>
-
-<TextView  
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="@string/form_label_valor"/>
-    
-<EditText 
-	android:id="@+id/EditTextValor"
-	android:text="" 
-	android:layout_width="fill_parent" 
-	android:layout_height="wrap_content"
-	android:numeric="decimal"/>
-
-<Button 
-	android:text="@+id/ButtonSalvarGasto" 
-	android:id="@+id/ButtonSalvarGasto" 
-	android:layout_width="fill_parent" 
-	android:layout_height="wrap_content"/>
-
 </LinearLayout>
