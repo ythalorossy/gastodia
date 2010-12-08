@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.AlertDialog;
-import android.app.ListActivity;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -17,9 +15,8 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import br.com.gastos.adapter.DBAdapter;
 
-public class GastosListarActivity extends ListActivity {
+public class GastosListarActivity extends DefaultGastosListActtivity {
 
-	private Context context;
 	private DBAdapter dbAdapter;
 	private ListView listAllGastos;
 	
@@ -33,8 +30,6 @@ public class GastosListarActivity extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-
-		context = this;
 
 		dbAdapter = new DBAdapter(context);
 

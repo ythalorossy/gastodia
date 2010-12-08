@@ -2,28 +2,26 @@ package br.com.gastos.activity;
 
 import java.util.Date;
 
-import br.com.gastos.adapter.DBAdapter;
-import android.app.Activity;
-import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class GastosNovoActivity extends Activity {
+public class GastosNovoActivity extends DefaultGastosActivity {
 	
-	private Context context;
-	private DBAdapter dbAdapter;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	
-    	context = this;
-    	dbAdapter = new DBAdapter(context);
     	
     	super.onCreate(savedInstanceState);
         
@@ -63,6 +61,26 @@ public class GastosNovoActivity extends Activity {
 			}
 		});
         
+    }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+    	MenuInflater menuInflater = getMenuInflater();
+    	menuInflater.inflate(R.menu.menu, menu);
+
+    	MenuItem menuItemNovoGasto = menu.findItem(R.id.item01);
+    	menuItemNovoGasto.setVisible(false);
+    	
+    	MenuItem menuItemListarGasto = menu.findItem(R.id.item02);
+    	menuItemListarGasto.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+			public boolean onMenuItemClick(MenuItem item) {
+				Intent myIntent = new Intent(context, GastosListarActivity.class);
+                startActivityForResult(myIntent, 0);
+				return false;
+			}
+		});
+    	
+    	return true;
     }
 
 }
