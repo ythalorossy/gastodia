@@ -1,15 +1,18 @@
 package br.com.gastos.activity;
 
-import br.com.gastos.adapter.DBAdapter;
-import br.com.gastos.ui.util.MenuApplication;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
+import br.com.gastos.adapter.DBAdapter;
+import br.com.gastos.ui.util.MenuApplication;
 
 /**
  * 
@@ -39,6 +42,7 @@ public class DefaultGastosActivity extends Activity implements MenuApplication {
 	
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
+		
     	MenuInflater menuInflater = getMenuInflater();
     	menuInflater.inflate(R.menu.menu, menu);
 
@@ -56,6 +60,14 @@ public class DefaultGastosActivity extends Activity implements MenuApplication {
 			public boolean onMenuItemClick(MenuItem item) {
 				Intent myIntent = new Intent(context, GastosListarActivity.class);
                 startActivityForResult(myIntent, 0);
+				return false;
+			}
+		});
+    	
+    	MenuItem sair = menu.findItem(R.id.item03);
+    	sair.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+			public boolean onMenuItemClick(MenuItem item) {
+					finish();						
 				return false;
 			}
 		});

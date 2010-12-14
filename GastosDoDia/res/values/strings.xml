@@ -2,9 +2,10 @@
 <resources>
     <string name="menu_item_listar_gastos">Listar Gastos</string>
     <string name="menu_item_novo_gasto">Novo Gasto</string>
-    <string name="hello">Sistema de Gerenciamento de Gastos do dia</string>
+    <string name="menu_item_sair">Sair</string><string name="hello">Sistema de Gerenciamento de Gastos do dia</string>
     <string name="app_name">Gastos do Dia</string>
 
 <string name="form_label_descricao">Descrição</string>
 <string name="form_label_valor">Valor</string>
+
 </resources>
