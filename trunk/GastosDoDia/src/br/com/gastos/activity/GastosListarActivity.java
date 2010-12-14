@@ -68,54 +68,60 @@ public class GastosListarActivity extends DefaultGastosListActtivity {
 		setListAdapter(cursorAdapter);
 
 		listView = getListView();
-		listView.setOnItemLongClickListener(new OnItemLongClickListener() {
+		listView.setOnItemLongClickListener(
+			
+			new OnItemLongClickListener() {
 
-			public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				
-				final CharSequence[] items = { Opcoes.ALTERAR.toString(), Opcoes.EXCLUIR.toString()};
-				
-				AlertDialog.Builder builder = new AlertDialog.Builder(context);
-
-				builder.setTitle(GASTOS);
-				
-				builder.setItems(items, new DialogInterface.OnClickListener() {
-				
-					public void onClick(DialogInterface dialog, int item) {
-						
-						Opcoes opc = Opcoes.values()[item];
-						
-						switch (opc) {
-						case ALTERAR:
-						
-							Toast.makeText(context, "Alterar", Toast.LENGTH_SHORT);
-							break;
-
-						case EXCLUIR:
+				public boolean onItemLongClick(AdapterView<?> a, View v, int arg2, long arg3) {
+					
+					final CharSequence[] items = { Opcoes.ALTERAR.toString(), Opcoes.EXCLUIR.toString()};
+					
+					AlertDialog.Builder builder = new AlertDialog.Builder(context);
+	
+					builder.setTitle(GASTOS);
+					
+					builder.setItems(items, 
 							
-							Toast.makeText(context, "Alterar", Toast.LENGTH_SHORT);
-							break;
-						
-//						case 2:
-//
-//							Intent myIntent = new Intent(context, GastosDescricaoActivity.class);
-//							
-//							TextView txt = (TextView)findViewById(R.id.item_list_gasto_descricao);
-//							myIntent.putExtra(Constants.CAMPO_DESCRICAO, txt.getText());
-//							
-//							startActivity(myIntent);
-//							
-//							break;
-						default:
-							break;
-						}
-					}
-				});
+							new DialogInterface.OnClickListener() {
+					
+								public void onClick(DialogInterface dialog, int item) {
+									
+									Opcoes opc = Opcoes.values()[item];
+									
+									switch (opc) {
+									case ALTERAR:
+									
+										Toast.makeText(context, "Alterar ", Toast.LENGTH_SHORT);
+										break;
+			
+									case EXCLUIR:
+										
+										Toast.makeText(context, "Alterar", Toast.LENGTH_SHORT);
+										break;
+									
+			//						case 2:
+			//
+			//							Intent myIntent = new Intent(context, GastosDescricaoActivity.class);
+			//							
+			//							TextView txt = (TextView)findViewById(R.id.item_list_gasto_descricao);
+			//							myIntent.putExtra(Constants.CAMPO_DESCRICAO, txt.getText());
+			//							
+			//							startActivity(myIntent);
+			//							
+			//							break;
+									default:
+										break;
+									}
+								}
+							}
+					);
 
-				builder.create().show();
+					builder.create().show();
 				
-				return false;
+					return false;
+				}
 			}
-		});
+		);
 		
 		
 		listView.setOnItemClickListener(new OnItemClickListener() {
