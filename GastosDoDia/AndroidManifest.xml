@@ -17,5 +17,7 @@
 		
 		<activity android:name="GastosDescricaoActivity"/>
 		
+		<activity android:name="GastosPesquisarActivity"/>
+		
 </application>
 </manifest> 
