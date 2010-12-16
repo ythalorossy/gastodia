@@ -46,27 +46,7 @@ public class GastosListarActivity extends DefaultGastosListActtivity {
 
 		setContentView(R.layout.list_todos_gastos);
 
-		Cursor cursor = dbAdapter.open().getAllGastos();
-
-		// Conseguir passar mais informações para o List, desta vez estou passando um Cursor no ligar da Lsta de Strings
-		// Dica: http://thinkandroid.wordpress.com/2010/01/09/simplecursoradapters-and-listviews/
-		
-		startManagingCursor(cursor);
-		
-        /*String[] columns = new String[] { DBAdapter.KEY_DESCRICAO, DBAdapter.KEY_VALOR, DBAdapter.KEY_DATA};
-        int[] to = new int[] { R.id.item_list_gasto_descricao, R.id.item_list_gasto_valor, R.id.item_list_gasto_data};*/
-        
-		String[] columns = new String[] { DBAdapter.KEY_DESCRICAO};
-		int[] to = new int[] { R.id.item_list_gasto_descricao};
-		
-		SimpleCursorAdapter cursorAdapter = new SimpleCursorAdapter(
-													this, 
-													R.layout.list_item_gasto, 
-													cursor, 
-													columns, 
-													to);
-		
-		setListAdapter(cursorAdapter);
+		popularGastos();
 
 		listView = getListView();
 		listView.setOnItemLongClickListener(new OnItemLongClickListener() {
@@ -85,6 +65,10 @@ public class GastosListarActivity extends DefaultGastosListActtivity {
 				
 					public void onClick(DialogInterface dialog, int item) {
 						
+						long _id = adapter.getCursor().getLong(0);
+						String descricao = adapter.getCursor().getString(1);
+						float valor = adapter.getCursor().getFloat(2);
+						
 						Opcoes opc = Opcoes.values()[item];
 						
 						switch (opc) {
@@ -92,22 +76,26 @@ public class GastosListarActivity extends DefaultGastosListActtivity {
 						
 							Intent intentDescricao = new Intent(context, GastosDescricaoActivity.class);
 							
-							long _id = adapter.getCursor().getLong(0);
-							String descricao = adapter.getCursor().getString(1);
-							float valor = adapter.getCursor().getFloat(2);
-							
 							intentDescricao.putExtra(Constants.CAMPO_ID, _id);
 							intentDescricao.putExtra(Constants.CAMPO_DESCRICAO, descricao);
 							intentDescricao.putExtra(Constants.CAMPO_VALOR, valor);
 							
 							startActivity(intentDescricao);
 							
-//							Toast.makeText(context, "Alterar", Toast.LENGTH_SHORT).show();
 							break;
 
 						case EXCLUIR:
 							
-							Toast.makeText(context, "Alterar", Toast.LENGTH_SHORT).show();
+							dbAdapter.open();
+							
+							if(dbAdapter.deleteGasto(_id)) {
+								Toast.makeText(context, "Deletado", Toast.LENGTH_SHORT).show();
+							}
+							
+							dbAdapter.close();
+							
+							popularGastos();
+							
 							break;
 						
 //						case 2:
@@ -179,6 +167,26 @@ public class GastosListarActivity extends DefaultGastosListActtivity {
 				alert.show();
 			}
 		});
+	}
+	private void popularGastos() {
+		
+		Cursor cursor = dbAdapter.open().getAllGastos();
+
+		// Conseguir passar mais informações para o List, desta vez estou passando um Cursor no ligar da Lsta de Strings
+		// Dica: http://thinkandroid.wordpress.com/2010/01/09/simplecursoradapters-and-listviews/
+		
+		startManagingCursor(cursor);
+		String[] columns = new String[] { DBAdapter.KEY_DESCRICAO, DBAdapter.KEY_VALOR};
+		int[] to = new int[] { R.id.item_list_gasto_descricao, R.id.item_list_gasto_valor};
+		
+		SimpleCursorAdapter cursorAdapter = new SimpleCursorAdapter(
+													this, 
+													R.layout.list_item_gasto, 
+													cursor, 
+													columns, 
+													to);
+		
+		setListAdapter(cursorAdapter);
 	}
 	
 }
