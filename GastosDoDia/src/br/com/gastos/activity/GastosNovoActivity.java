@@ -58,10 +58,10 @@ public class GastosNovoActivity extends DefaultGastosActivity {
     	MenuInflater menuInflater = getMenuInflater();
     	menuInflater.inflate(R.menu.menu, menu);
 
-    	MenuItem menuItemNovoGasto = menu.findItem(R.id.item01);
+    	MenuItem menuItemNovoGasto = menu.findItem(R.id.menu_item_novo_gasto);
     	menuItemNovoGasto.setVisible(false);
     	
-    	MenuItem menuItemListarGasto = menu.findItem(R.id.item02);
+    	MenuItem menuItemListarGasto = menu.findItem(R.id.menu_item_listar_gastos);
     	menuItemListarGasto.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 			public boolean onMenuItemClick(MenuItem item) {
 				Intent myIntent = new Intent(context, GastosListarActivity.class);

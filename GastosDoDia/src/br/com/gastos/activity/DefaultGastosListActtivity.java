@@ -38,7 +38,7 @@ public class DefaultGastosListActtivity extends ListActivity implements MenuAppl
     	MenuInflater menuInflater = getMenuInflater();
     	menuInflater.inflate(R.menu.menu, menu);
 
-    	MenuItem menuItemNovoGasto = menu.findItem(R.id.item01);
+    	MenuItem menuItemNovoGasto = menu.findItem(R.id.menu_item_novo_gasto);
     	menuItemNovoGasto.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 			public boolean onMenuItemClick(MenuItem item) {
 				Intent myIntent = new Intent(context, GastosNovoActivity.class);
@@ -47,9 +47,8 @@ public class DefaultGastosListActtivity extends ListActivity implements MenuAppl
 			}
 		});
     	
-    	MenuItem menuItemListarGasto = menu.findItem(R.id.item02);
+    	MenuItem menuItemListarGasto = menu.findItem(R.id.menu_item_listar_gastos);
     	menuItemListarGasto.setVisible(false);
-    	
     	
     	return super.onCreateOptionsMenu(menu);
     }

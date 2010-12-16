@@ -46,7 +46,7 @@ public class DefaultGastosActivity extends Activity implements MenuApplication {
     	MenuInflater menuInflater = getMenuInflater();
     	menuInflater.inflate(R.menu.menu, menu);
 
-    	MenuItem menuItemNovoGasto = menu.findItem(R.id.item01);
+    	MenuItem menuItemNovoGasto = menu.findItem(R.id.menu_item_novo_gasto);
     	menuItemNovoGasto.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 			public boolean onMenuItemClick(MenuItem item) {
 				Intent myIntent = new Intent(context, GastosNovoActivity.class);
@@ -55,7 +55,7 @@ public class DefaultGastosActivity extends Activity implements MenuApplication {
 			}
 		});
     	
-    	MenuItem menuItemListarGasto = menu.findItem(R.id.item02);
+    	MenuItem menuItemListarGasto = menu.findItem(R.id.menu_item_listar_gastos);
     	menuItemListarGasto.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 			public boolean onMenuItemClick(MenuItem item) {
 				Intent myIntent = new Intent(context, GastosListarActivity.class);
@@ -63,8 +63,17 @@ public class DefaultGastosActivity extends Activity implements MenuApplication {
 				return false;
 			}
 		});
+
+    	MenuItem pesquisar = menu.findItem(R.id.menu_item_pesquisar);
+    	pesquisar.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+			public boolean onMenuItemClick(MenuItem item) {
+					Intent myIntent = new Intent(context, GastosPesquisarActivity.class); 
+					startActivityForResult(myIntent, RESULT_OK);						
+				return false;
+			}
+		});
     	
-    	MenuItem sair = menu.findItem(R.id.item03);
+    	MenuItem sair = menu.findItem(R.id.menu_item_sair);
     	sair.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 			public boolean onMenuItemClick(MenuItem item) {
 					finish();						
