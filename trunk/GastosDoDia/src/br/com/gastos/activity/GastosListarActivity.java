@@ -2,6 +2,7 @@ package br.com.gastos.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -11,8 +12,8 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
-import br.com.gastos.activity.GastosListarActivity.Opcoes;
 import br.com.gastos.adapter.DBAdapter;
+import br.com.gastos.ui.util.Constants;
 
 /**
  * Listagem de todos os gastos efetuados;
@@ -68,60 +69,68 @@ public class GastosListarActivity extends DefaultGastosListActtivity {
 		setListAdapter(cursorAdapter);
 
 		listView = getListView();
-		listView.setOnItemLongClickListener(
-			
-			new OnItemLongClickListener() {
+		listView.setOnItemLongClickListener(new OnItemLongClickListener() {
 
-				public boolean onItemLongClick(AdapterView<?> a, View v, int arg2, long arg3) {
-					
-					final CharSequence[] items = { Opcoes.ALTERAR.toString(), Opcoes.EXCLUIR.toString()};
-					
-					AlertDialog.Builder builder = new AlertDialog.Builder(context);
-	
-					builder.setTitle(GASTOS);
-					
-					builder.setItems(items, 
-							
-							new DialogInterface.OnClickListener() {
-					
-								public void onClick(DialogInterface dialog, int item) {
-									
-									Opcoes opc = Opcoes.values()[item];
-									
-									switch (opc) {
-									case ALTERAR:
-									
-										Toast.makeText(context, "Alterar ", Toast.LENGTH_SHORT);
-										break;
-			
-									case EXCLUIR:
-										
-										Toast.makeText(context, "Alterar", Toast.LENGTH_SHORT);
-										break;
-									
-			//						case 2:
-			//
-			//							Intent myIntent = new Intent(context, GastosDescricaoActivity.class);
-			//							
-			//							TextView txt = (TextView)findViewById(R.id.item_list_gasto_descricao);
-			//							myIntent.putExtra(Constants.CAMPO_DESCRICAO, txt.getText());
-			//							
-			//							startActivity(myIntent);
-			//							
-			//							break;
-									default:
-										break;
-									}
-								}
-							}
-					);
-
-					builder.create().show();
+			public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 				
-					return false;
-				}
+				final SimpleCursorAdapter adapter = (SimpleCursorAdapter) arg0.getAdapter();
+				
+				final CharSequence[] items = { Opcoes.ALTERAR.toString(), Opcoes.EXCLUIR.toString()};
+				
+				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+				builder.setTitle(GASTOS);
+				
+				builder.setItems(items, new DialogInterface.OnClickListener() {
+				
+					public void onClick(DialogInterface dialog, int item) {
+						
+						Opcoes opc = Opcoes.values()[item];
+						
+						switch (opc) {
+						case ALTERAR:
+						
+							Intent intentDescricao = new Intent(context, GastosDescricaoActivity.class);
+							
+							long _id = adapter.getCursor().getLong(0);
+							String descricao = adapter.getCursor().getString(1);
+							float valor = adapter.getCursor().getFloat(2);
+							
+							intentDescricao.putExtra(Constants.CAMPO_ID, _id);
+							intentDescricao.putExtra(Constants.CAMPO_DESCRICAO, descricao);
+							intentDescricao.putExtra(Constants.CAMPO_VALOR, valor);
+							
+							startActivity(intentDescricao);
+							
+//							Toast.makeText(context, "Alterar", Toast.LENGTH_SHORT).show();
+							break;
+
+						case EXCLUIR:
+							
+							Toast.makeText(context, "Alterar", Toast.LENGTH_SHORT).show();
+							break;
+						
+//						case 2:
+//
+//							Intent myIntent = new Intent(context, GastosDescricaoActivity.class);
+//							
+//							TextView txt = (TextView)findViewById(R.id.item_list_gasto_descricao);
+//							myIntent.putExtra(Constants.CAMPO_DESCRICAO, txt.getText());
+//							
+//							startActivity(myIntent);
+//							
+//							break;
+						default:
+							break;
+						}
+					}
+				});
+
+				builder.create().show();
+				
+				return false;
 			}
-		);
+		});
 		
 		
 		listView.setOnItemClickListener(new OnItemClickListener() {
