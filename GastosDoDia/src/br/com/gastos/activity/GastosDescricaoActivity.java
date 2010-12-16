@@ -42,7 +42,7 @@ public class GastosDescricaoActivity extends DefaultGastosActivity  {
    						new Date());
    				dbAdapter.close();
    				Toast.makeText(context, "Atualizado com sucesso!", Toast.LENGTH_LONG).show();
-   				
+   				setResult(RESULT_OK);
    				startActivity(new Intent(context, GastosListarActivity.class));
    				
 			}

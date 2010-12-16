@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+ 	<string name="sem_gastos">Nenhum Gastos cadastrado</string>
     <string name="menu_item_listar_gastos">Listar Gastos</string>
     <string name="menu_item_novo_gasto">Novo Gasto</string>
     <string name="menu_item_sair">Sair</string><string name="hello">Sistema de Gerenciamento de Gastos do dia</string>
