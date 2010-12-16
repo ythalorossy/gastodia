@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class DBAdapter {
-	public static final String KEY_ROWID = "_id";
+	public static final String KEY_ROWID = "id";
 	public static final String KEY_DESCRICAO = "descricao";
 	public static final String KEY_VALOR = "valor";
 	public static final String KEY_DATA = "data";
@@ -100,11 +100,11 @@ public class DBAdapter {
 
     public boolean updateGasto(long rowId, String descricao, float valor, Date data) 
     {
-        ContentValues args = new ContentValues();
-        args.put(KEY_DESCRICAO, descricao);
-        args.put(KEY_VALOR, valor);
-        args.put(KEY_DATA, data.getTime());
-        return db.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
+        ContentValues values = new ContentValues();
+        values.put(KEY_DESCRICAO, descricao);
+        values.put(KEY_VALOR, valor);
+        values.put(KEY_DATA, data.getTime());
+        return db.update(DATABASE_TABLE, values, KEY_ROWID + "=" + rowId, null) > 0;
     }
 
 	private static class DatabaseHelper extends SQLiteOpenHelper {
