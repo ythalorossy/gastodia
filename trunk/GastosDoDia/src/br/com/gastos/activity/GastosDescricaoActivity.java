@@ -35,12 +35,12 @@ public class GastosDescricaoActivity extends DefaultGastosActivity  {
    	 	Button botaoAlterar = (Button)findViewById(R.id.descricao_btn_alterar);
    		botaoAlterar.setOnClickListener(new OnClickListener() {
    			public void onClick(View v) {
-   				
+   				dbAdapter.open();
    				dbAdapter.updateGasto(_id,
    						((TextView)findViewById(R.id.descricao_text_descricao)).getText().toString().trim(), 
    						Float.parseFloat(((TextView)findViewById(R.id.descricao_text_valor)).getText().toString()), 
    						new Date());
-   			
+   				dbAdapter.close();
    				Toast.makeText(context, "Atualizado com sucesso!", Toast.LENGTH_LONG).show();
    				
    				startActivity(new Intent(context, GastosListarActivity.class));

@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class DBAdapter {
-	public static final String KEY_ROWID = "id";
+	public static final String KEY_ROWID = "_id";
 	public static final String KEY_DESCRICAO = "descricao";
 	public static final String KEY_VALOR = "valor";
 	public static final String KEY_DATA = "data";
