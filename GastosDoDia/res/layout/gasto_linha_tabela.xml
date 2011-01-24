@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" 
+	android:layout_height="wrap_content"
+	android:background="#ffffff">
+	
+	<TextView 
+		android:id="@+id/descricao"
+		android:layout_height="30dip" 
+		android:layout_width="160sp"
+		android:textColor="#000000"/>
+		
+	<TextView 
+		android:id="@+id/valor"
+		android:layout_height="30dip" 
+		android:layout_width="100sp"
+		android:textColor="#000000"/>
+		
+<!--	<TextView android:id="@+id/dataCriacao"-->
+<!--		android:layout_height="30dip" android:layout_width="40sp"-->
+<!--	/>-->
+</LinearLayout>
